@@ -7,7 +7,6 @@
 </head>
 
 <body>
-
 <header>
 <div id="haku">
 <input style="text" value="Search" name="haku">
@@ -21,13 +20,14 @@
 <a href="url"><img src="users.png" alt="kuva" style="width:25px;height:25px">Users</a><br>
 <a href="url"><img src="db.png" alt="kuva" style="width:25px;height:25px">Database</a><br>
 <a href="url"><img src="logout.png" alt="kuva" style="width:25px;height:25px">Log out</a>
-<p>users online</p>
+<p><?php echo $users = 0; ?> users online</p>
 </div>
 
 <div id="sisalto">
 <h1>Admin Panel</h1>
+<?php
+echo "tähän tulostuu jotain kivaa";
+?>
 </div>
-
 </body>
-
 </html>
