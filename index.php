@@ -1,3 +1,6 @@
+<?php
+include 'auth.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,8 +25,9 @@
 <a href="url"><img src="view.png" alt="kuva" style="width:25px;height:25px">Boards</a><br>
 <a href="url"><img src="users.png" alt="kuva" style="width:25px;height:25px">Users</a><br>
 <a href="url"><img src="db.png" alt="kuva" style="width:25px;height:25px">Database</a><br>
-<a href="url"><img src="logout.png" alt="kuva" style="width:25px;height:25px">Log out</a>
+<a href="login.php?signout=true"><img src="logout.png" alt="kuva" style="width:25px;height:25px" >Log out</a>
 <p><?php echo $users = 0; ?> users online</p>
+
 </div>
 
 <div id="sisalto">
