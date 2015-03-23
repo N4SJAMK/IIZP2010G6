@@ -33,7 +33,7 @@ include 'auth.php';
 <div id="sisalto">
 <h1>Admin Panel</h1>
 <?php
-echo "tähän tulostuu jotain kivaa";
+include("mongoDB.php");
 ?>
 </div>
 </body>
