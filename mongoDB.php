@@ -2,11 +2,14 @@
 /*
 Connection to mongo database
 */
-
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 try
 {
-    $m = new Mongo(); // connect
-    $db = $m->selectDB("example");
+    $m = new MongoClient(); // connect
+	echo '<br><pre>';
+    print_r($m->listDBs());
+	echo '</pre>';
 }
 catch ( MongoConnectionException $e )
 {
