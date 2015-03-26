@@ -35,15 +35,34 @@ if(isset($_POST['backup'])){
 
 <div id="sisalto">
 <h1>Admin Panel</h1>
-<form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+<script type="text/javascript">
+var temp;
+function jotain(asd){
+	temp = asd;
+}
+function onkovarma(){
+	var jaa = confirm("palautetaanko "+temp+"?");
+	return jaa;
+}
+</script>
+<form onsubmit='return onkovarma();' method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
 <input type="submit" name="backup" value="Backup">
-<input type="submit" name="restore" value="Restore">
-</form>
-<?php
-//include("mongoDB.php");
-print_r($_POST);
-print_r(scandir("./dumps"));
+<?php	
+foreach(scandir("./dumps") as $val){
+	if(substr($val, 0, 4) == dump){
+		echo <<<asd
+		<br/><input onclick="jotain('{$val}')" type='submit' name='restore' value='{$val}' />
+asd;
+	}
+}
 ?>
+</form>
+<pre>
+<?php
+print_r($_POST);
+//include("mongoDB.php");
+?>
+</pre>
 </div>
 </body>
 </html>
