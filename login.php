@@ -17,7 +17,7 @@ if (isset($_POST['uid']) AND isset($_POST['passwd'])) {
         $_SESSION['app1_islogged'] = true;
         $_SESSION['uid'] = $_POST['uid']; // Tässä mukavuussyistä, voidaan tulostella yms.
          header("Location: http://" . $_SERVER['HTTP_HOST']
-                                    . dirname($_SERVER['PHP_SELF']) . '/'
+                                    . dirname($_SERVER['PHP_SELF']) . ''
                                     . $page);
         exit;
     } else {
