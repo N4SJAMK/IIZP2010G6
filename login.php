@@ -48,7 +48,7 @@ if ($errmsg != '') echo $errmsg;
 ?>
 <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
 Tunnus:<br><input type="text" name="uid" size="30"><br>
-Salasana:<br><input type="text" name="passwd" size="30"><br>
+Salasana:<br><input type="password" name="passwd" size="30"><br>
 <input type='submit' name='action' value='Kirjaudu'>
 <br>
 </form>
