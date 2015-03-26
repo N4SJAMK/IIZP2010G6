@@ -1,5 +1,8 @@
 <?php
 include 'auth.php';
+if(isset($_POST['backup'])){
+	require_once("mongodump.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,8 +35,14 @@ include 'auth.php';
 
 <div id="sisalto">
 <h1>Admin Panel</h1>
+<form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+<input type="submit" name="backup" value="Backup">
+<input type="submit" name="restore" value="Restore">
+</form>
 <?php
-include("mongoDB.php");
+//include("mongoDB.php");
+print_r($_POST);
+print_r(scandir("./dumps"));
 ?>
 </div>
 </body>
