@@ -26,28 +26,20 @@ foreach ($collections as $collection) {
     echo "amount of documents in $collection: ";
     echo $collection->count(), "\n<br>";
 }
-/*
+
+
+
+
 echo '<pre>';
 $m = new MongoClient();
-$db = $m->selectDB("teamboard-dev");
-$cl = new MongoCollection($db, "users");
+$db = $m->selectDB("local");
+$cl = new MongoCollection($db, "startup_log");
 $cursor = $cl->find();
 foreach ($cursor as $doc) {
     print_r($doc);
 }
 echo '</pre>';
 
-
-echo '<pre>';
-$m = new MongoClient();
-$db = $m->selectDB("teamboard-dev");
-$cl = new MongoCollection($db, "events");
-$cursor = $cl->find();
-foreach ($cursor as $doc) {
-    print_r($doc);
-}
-echo '</pre>';
-*/
 
 }
 catch ( MongoConnectionException $e )
