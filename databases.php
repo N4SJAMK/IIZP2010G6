@@ -45,6 +45,9 @@ function onkovarma(){
 		return true;
 	}
 	var jaa = confirm("palautetaanko "+temp+"?");
+	if(jaa != true){
+		temp = 0;
+	}
 	return jaa;
 }
 </script>
