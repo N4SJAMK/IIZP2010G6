@@ -36,11 +36,14 @@ if(isset($_POST['backup'])){
 <div id="sisalto">
 <h1>Admin Panel</h1>
 <script type="text/javascript">
-var temp;
+var temp = 0;
 function jotain(asd){
 	temp = asd;
 }
 function onkovarma(){
+	if(temp == 0){
+		return true;
+	}
 	var jaa = confirm("palautetaanko "+temp+"?");
 	return jaa;
 }
