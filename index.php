@@ -9,7 +9,6 @@ include 'auth.php';
 <link rel="stylesheet" type="text/css" href="tyylit.css">
 <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-<script type="text/javascript" src="jquery.js"></script>
 </head>
 
 <body>
