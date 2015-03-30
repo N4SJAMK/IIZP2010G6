@@ -10,7 +10,6 @@ try{
     print_r($m->listDBs());
 	echo '</pre>';
 	
-$m = new MongoClient();
 $db = $m->selectDB("teamboard-dev");
 $collections = $db->listCollections();
 

@@ -37,18 +37,18 @@ if(isset($_POST['backup'])){
 <h1>Admin Panel</h1>
 <script type="text/javascript">
 var temp = 0;
-function jotain(asd){
-	temp = asd;
+function jotain(dateParam){
+	temp = dateParam;
 }
 function onkovarma(){
 	if(temp == 0){
 		return true;
 	}
-	var jaa = confirm("palautetaanko "+temp+"?");
-	if(jaa != true){
+	var popup = confirm("palautetaanko "+temp+"?");
+	if(popup != true){
 		temp = 0;
 	}
-	return jaa;
+	return popup;
 }
 </script>
 <form onsubmit='return onkovarma();' method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
@@ -56,9 +56,9 @@ function onkovarma(){
 <?php	
 foreach(scandir("./dumps") as $val){
 	if(substr($val, 0, 4) == dump){
-		echo <<<asd
+		echo <<<restoreNappi
 		<br/><input onclick="jotain('{$val}')" type='submit' name='restore' value='{$val}' />
-asd;
+restoreNappi;
 	}
 }
 ?>
