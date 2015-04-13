@@ -1,20 +1,24 @@
 <?php
 include 'auth.php';
 include 'head.php';
+//export
 if(isset($_POST['backup'])){
 	$dateParam = date("-Y-m-d-H-m-s");
 	exec("mongodump --db teamboard-dev --out /var/www/html/dumps/dump{$dateParam}");
 }
+//import
 if(isset($_POST['restore'])){
 	exec("mongorestore /var/www/html/dumps/{$_POST['restore']}");	
 }
 ?>
-<h1>Admin Panel</h1>
+<h1>Databases</h1>
 <script type="text/javascript">
 var temp = 0;
+//otetaan talteen backup tunnus
 function jotain(dateParam){
 	temp = dateParam;
 }
+//keskeyttävä dialogi
 function onkovarma(){
 	if(temp == 0){
 		return true;
@@ -23,6 +27,7 @@ function onkovarma(){
 	if(popup != true){
 		temp = 0;
 	}
+	//varatoimenpide
 	var otanko = confirm("Tallennetaanko tietokannan nykyinen tila?");
 	if(otanko == true){
 		$.ajax({
