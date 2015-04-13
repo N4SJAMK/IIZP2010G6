@@ -34,11 +34,18 @@ try{
 	$users = new MongoCollection($db, "users");
 	$boards = new MongoCollection($db, "boards");
 	$tickets = new MongoCollection($db, "tickets");
+	$events = new MongoCollection($db, "events");
+	$aika = strtotime('now') - 300;
+	$aika = new MongoDate($aika);
+	$kysely = array('createdAt' => array('$gt' => $aika));
+	$cursor = $events->find($kysely);
 	echo <<<users
 <br/><br/><span>
 {$users->count()} Users registered.<br/>
 {$boards->count()} Total Boards.<br/>
 {$tickets->count()} Total Tickets.<br/>
+<br/>
+{$cursor->count()} Users Online.<br/>
 
 </span>
 users;
