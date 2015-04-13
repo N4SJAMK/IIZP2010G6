@@ -35,17 +35,22 @@ try{
 	$boards = new MongoCollection($db, "boards");
 	$tickets = new MongoCollection($db, "tickets");
 	$events = new MongoCollection($db, "events");
-	$aika = strtotime('now') - 300;
+	$aika = strtotime('now') - 900;
 	$aika = new MongoDate($aika);
 	$kysely = array('createdAt' => array('$gt' => $aika));
-	$cursor = $events->find($kysely);
+	$cursor = $db->command(array(
+		"distinct" => "events",
+		"key" => "user",
+		"query" => $kysely
+	));
+	$online = sizeof($cursor['values']);
 	echo <<<users
 <br/><br/><span>
 {$users->count()} Users registered.<br/>
 {$boards->count()} Total Boards.<br/>
 {$tickets->count()} Total Tickets.<br/>
 <br/>
-{$cursor->count()} Users Online.<br/>
+{$online} Users Online.<br/>
 
 </span>
 users;
