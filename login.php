@@ -10,7 +10,7 @@ if (isset($_GET['signout']) && $_GET['signout'] == 'true'){
 		unset($_SESSION['app1_islogged']);
 	}
 }
-if (isset($_POST['uid']) AND isset($_POST['passwd'])) {
+else if (isset($_POST['uid']) AND isset($_POST['passwd'])) {
     // Kovakoodatut tunnus ja salasana
     if ($_POST['uid'] === $username AND $_POST['passwd'] === $password) {
         // Kirjautuminen ok, merkintä sessiotauluun
