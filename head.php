@@ -10,11 +10,6 @@
 </head>
 
 <body>
-<header>
-<div id="haku">
-<input style="text" value="Search" name="haku">
-</div>
-</header>
 
 <div id="sivupalkki">
 <h2 id="otsikko">Contriboard</h2>
@@ -24,26 +19,26 @@
 <a href="databases.php"><img src="db.png" alt="kuva" style="width:25px;height:25px">Database</a><br/>
 <a href="login.php?signout=true"><img src="logout.png" alt="kuva" style="width:25px;height:25px" >Log out</a>
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-
 try{	
+/*
+Counting users, boards, tickets, active users and mongo used space.
+*/
     $m = new MongoClient(); // connect
 	$db = $m->selectDB("teamboard-dev");
 	$users = new MongoCollection($db, "users");
 	$boards = new MongoCollection($db, "boards");
 	$tickets = new MongoCollection($db, "tickets");
 	$events = new MongoCollection($db, "events");
-	$aika = strtotime('now') - 900;
-	$aika = new MongoDate($aika);
-	$kysely = array('createdAt' => array('$gt' => $aika));
+	$time = strtotime('now') - 900;
+	$time = new MongoDate($time);
+	$query = array('createdAt' => array('$gt' => $time));
 	$cursor = $db->command(array(
 		"distinct" => "events",
-		"key" => "user",
-		"query" => $kysely
+		"key" => "user.id",
+		"query" => $query
 	));
 	$online = sizeof($cursor['values']);
+	$space = round($m->listDBs()['totalSize']/1000000, 1);
 	echo <<<users
 <br/><br/><span>
 {$users->count()} Users registered.<br/>
@@ -51,26 +46,11 @@ try{
 {$tickets->count()} Total Tickets.<br/>
 <br/>
 {$online} Users Online.<br/>
+<br/>
+{$space} MB<br/>Used by Mongo.<br/>
 
 </span>
 users;
-	/*
-	$collections = $db->listCollections();
-	foreach ($collections as $collection) {
-		echo "amount of documents in $collection: ";
-		echo $collection->count(), "\n<br/>";
-	}
-	echo '<pre>';
-	$m = new MongoClient();
-	$db = $m->selectDB("teamboard-dev");
-	$cl = new MongoCollection($db, "users");
-	$cursor = $cl->find();
-	foreach ($cursor as $doc) {
-		print_r($doc);
-	}
-	echo '</pre>';
-	*/
-
 }
 catch ( MongoConnectionException $e )
 {
@@ -81,5 +61,8 @@ catch ( MongoConnectionException $e )
 ?>
 
 </div>
-
+<div id="block1">
+<header>
+	<input style="text" value="Search" name="haku">
+</header>
 <div id="sisalto">

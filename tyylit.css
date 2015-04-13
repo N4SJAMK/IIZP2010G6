@@ -1,29 +1,65 @@
-html{ width:100%; height:100%;
+*{
+	overflow: hidden;
+}
+html{ 
+	width:100%;
+	height:100%;
 }
 
-body { width:100%; height:100%; margin:auto; background-color:#FFFFFF; top:0; margin:auto; font-family: 'Lato', sans-serif;
+body { 
+	width:100%;
+	height:100%;
+	margin:auto;
+	background-color:#FFFFFF;
+	margin:auto;
+	font-family: 'Lato', sans-serif;
+	display: flex;
+	flex-direction: row;
 }
 
-header { width:85%; height:7%; float:right; top:0; right:0; background-color: #EDEDED; margin:auto;
+header {
+	background-color: #EDEDED;
+	flex-grow: 1;
+	width: 100%;
+	padding: 10px;
 }
 
-#otsikko{ font-family: 'Lobster', cursive;
+#otsikko{
+	font-family: 'Lobster', cursive;
 }
 
-#haku { padding-top:1.5%; padding-bottom:1%; padding-left: 4%;
+#sivupalkki {
+	height: 100%;
+	background-color:#272630;
+	color:white;
+	font-size: 1.5em;
+	flex-grow: 1;
+	padding: 10px;  
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
-#sivupalkki { width:15%; height:100%; float: left; background-color:#272630; margin:auto; color:white;
-  text-align: left; font-size: 1.5em;
+#block1{
+	flex-grow: 1000;
+	display: flex;
+	flex-direction: column;
 }
 
-a { color:white; text-decoration: none;
+
+a {
+	color:white;
+	text-decoration: none;
 }
 
-#sisalto { width:80%; height:90%; float: right; margin:auto;
-
+#sisalto {
+	margin:auto;
+	flex-grow: 1000;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	width: 100%;
+	padding: 20px;
 }
 
-input{
+#sisalto input{
 	margin: 5px;
 }
