@@ -3,6 +3,9 @@ include 'auth.php';
 if(isset($_POST['backup'])){
 	require_once("mongodump.php");
 }
+if(isset($_POST['restore'])){
+	echo $_POST['restore'];
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,9 +47,17 @@ function onkovarma(){
 	if(temp == 0){
 		return true;
 	}
-	var popup = confirm("palautetaanko "+temp+"?");
+	var popup = confirm("Palautetaanko "+temp+"?");
 	if(popup != true){
 		temp = 0;
+	}
+	var otanko = confirm("Tallennetaanko tietokannan nykyinen tila?");
+	if(otanko == true){
+		$.ajax({
+			type: "POST",
+			url: "databases.php",
+			data: { backup: "Backup" }
+		});
 	}
 	return popup;
 }
