@@ -1,5 +1,8 @@
 <?php
 include 'auth.php';
+if(isset($_POST['backup'])){
+	require_once("mongodump.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,6 +12,7 @@ include 'auth.php';
 <link rel="stylesheet" type="text/css" href="tyylit.css">
 <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="jquery.js"></script>
 </head>
 
 <body>
@@ -31,11 +35,40 @@ include 'auth.php';
 
 <div id="sisalto">
 <h1>Admin Panel</h1>
-<input type="submit" value="Backup">
-<input type="submit" value="Restore">
-<?php
-include("mongoDB.php");
+<script type="text/javascript">
+var temp = 0;
+function jotain(dateParam){
+	temp = dateParam;
+}
+function onkovarma(){
+	if(temp == 0){
+		return true;
+	}
+	var popup = confirm("palautetaanko "+temp+"?");
+	if(popup != true){
+		temp = 0;
+	}
+	return popup;
+}
+</script>
+<form onsubmit='return onkovarma();' method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
+<input type="submit" name="backup" value="Backup">
+<?php	
+foreach(scandir("./dumps") as $val){
+	if(substr($val, 0, 4) == dump){
+		echo <<<restoreNappi
+		<br/><input onclick="jotain('{$val}')" type='submit' name='restore' value='{$val}' />
+restoreNappi;
+	}
+}
 ?>
+</form>
+<pre>
+<?php
+print_r($_POST);
+//include("mongoDB.php");
+?>
+</pre>
 </div>
 </body>
 </html>

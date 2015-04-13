@@ -9,6 +9,7 @@ include 'auth.php';
 <link rel="stylesheet" type="text/css" href="tyylit.css">
 <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="jquery.js"></script>
 </head>
 
 <body>
@@ -31,8 +32,6 @@ include 'auth.php';
 
 <div id="sisalto">
 <h1>Admin Panel</h1>
-<input type="submit" value="Backup">
-<input type="submit" value="Restore">
 <?php
 include("mongoDB.php");
 ?>
