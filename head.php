@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,11 +19,54 @@
 <div id="sivupalkki">
 <h2 id="otsikko">Contriboard</h2>
 
-<a href="index.php"><img src="view.png" alt="kuva" style="width:25px;height:25px">Boards</a><br>
-<a href="users.php"><img src="users.png" alt="kuva" style="width:25px;height:25px">Users</a><br>
-<a href="databases.php"><img src="db.png" alt="kuva" style="width:25px;height:25px">Database</a><br>
+<a href="index.php"><img src="view.png" alt="kuva" style="width:25px;height:25px">Boards</a><br/>
+<a href="users.php"><img src="users.png" alt="kuva" style="width:25px;height:25px">Users</a><br/>
+<a href="databases.php"><img src="db.png" alt="kuva" style="width:25px;height:25px">Database</a><br/>
 <a href="login.php?signout=true"><img src="logout.png" alt="kuva" style="width:25px;height:25px" >Log out</a>
-<p><?php echo $users = 0; ?> users online</p>
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+
+try{	
+    $m = new MongoClient(); // connect
+	$db = $m->selectDB("teamboard-dev");
+	$users = new MongoCollection($db, "users");
+	$boards = new MongoCollection($db, "boards");
+	$tickets = new MongoCollection($db, "tickets");
+	echo <<<users
+<br/><br/><span>
+{$users->count()} Users registered.<br/>
+{$boards->count()} Total Boards.<br/>
+{$tickets->count()} Total Tickets.<br/>
+
+</span>
+users;
+	/*
+	$collections = $db->listCollections();
+	foreach ($collections as $collection) {
+		echo "amount of documents in $collection: ";
+		echo $collection->count(), "\n<br/>";
+	}
+	echo '<pre>';
+	$m = new MongoClient();
+	$db = $m->selectDB("teamboard-dev");
+	$cl = new MongoCollection($db, "users");
+	$cursor = $cl->find();
+	foreach ($cursor as $doc) {
+		print_r($doc);
+	}
+	echo '</pre>';
+	*/
+
+}
+catch ( MongoConnectionException $e )
+{
+    echo '<p>Could not connect to MongoDB</p>';
+    exit();
+}
+
+?>
 
 </div>
 

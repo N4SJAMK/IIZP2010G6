@@ -45,9 +45,9 @@ else if (isset($_POST['uid']) AND isset($_POST['passwd'])) {
 if ($errmsg != '') echo $errmsg;
 ?>
 <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
-Tunnus:<br><input autofocus type="text" name="uid" size="30"><br>
-Salasana:<br><input type="password" name="passwd" size="30"><br>
+Tunnus:<br/><input autofocus type="text" name="uid" size="30"><br/>
+Salasana:<br/><input type="password" name="passwd" size="30"><br/>
 <input type='submit' name='action' value='Kirjaudu'>
-<br>
+<br/>
 </form>
 </div>

@@ -23,3 +23,7 @@ a { color:white; text-decoration: none;
 #sisalto { width:80%; height:90%; float: right; margin:auto;
 
 }
+
+input{
+	margin: 5px;
+}
