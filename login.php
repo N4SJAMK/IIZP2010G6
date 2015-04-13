@@ -10,7 +10,7 @@ if (isset($_GET['signout']) && $_GET['signout'] == 'true'){
 		unset($_SESSION['app1_islogged']);
 	}
 }
-if (isset($_POST['uid']) AND isset($_POST['passwd'])) {
+else if (isset($_POST['uid']) AND isset($_POST['passwd'])) {
     // Kovakoodatut tunnus ja salasana
     if ($_POST['uid'] === $username AND $_POST['passwd'] === $password) {
         // Kirjautuminen ok, merkintä sessiotauluun
@@ -48,7 +48,7 @@ if ($errmsg != '') echo $errmsg;
 ?>
 <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
 Tunnus:<br><input type="text" name="uid" size="30"><br>
-Salasana:<br><input type="text" name="passwd" size="30"><br>
+Salasana:<br><input type="password" name="passwd" size="30"><br>
 <input type='submit' name='action' value='Kirjaudu'>
 <br>
 </form>
