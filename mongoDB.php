@@ -31,8 +31,8 @@ foreach ($collections as $collection) {
 
 echo '<pre>';
 $m = new MongoClient();
-$db = $m->selectDB("local");
-$cl = new MongoCollection($db, "startup_log");
+$db = $m->selectDB("teamboard-dev");
+$cl = new MongoCollection($db, "users");
 $cursor = $cl->find();
 foreach ($cursor as $doc) {
     print_r($doc);

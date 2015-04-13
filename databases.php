@@ -1,10 +1,13 @@
 <?php
 include 'auth.php';
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 if(isset($_POST['backup'])){
-	require_once("mongodump.php");
+	$dateParam = date("-Y-m-d-H-m-s");
+	exec("mongodump --db teamboard-dev --out /var/www/html/dumps/dump{$dateParam}");
 }
 if(isset($_POST['restore'])){
-	echo $_POST['restore'];
+	exec("mongorestore /var/www/html/dumps/{$_POST['restore']}");	
 }
 ?>
 <!DOCTYPE html>
@@ -66,7 +69,7 @@ function onkovarma(){
 <input type="submit" name="backup" value="Backup">
 <?php	
 foreach(scandir("./dumps") as $val){
-	if(substr($val, 0, 4) == dump){
+	if(substr($val, 0, 4) == 'dump'){
 		echo <<<restoreNappi
 		<br/><input onclick="jotain('{$val}')" type='submit' name='restore' value='{$val}' />
 restoreNappi;
@@ -76,7 +79,6 @@ restoreNappi;
 </form>
 <pre>
 <?php
-print_r($_POST);
 //include("mongoDB.php");
 ?>
 </pre>
