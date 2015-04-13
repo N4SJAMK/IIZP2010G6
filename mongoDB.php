@@ -15,7 +15,7 @@ $collections = $db->listCollections();
 
 foreach ($collections as $collection) {
     echo "amount of documents in $collection: ";
-    echo $collection->count(), "\n<br>";
+    echo $collection->count(), "\n<br/>";
 }
 $m = new MongoClient();
 $db = $m->selectDB("local");
@@ -23,16 +23,15 @@ $collections = $db->listCollections();
 
 foreach ($collections as $collection) {
     echo "amount of documents in $collection: ";
-    echo $collection->count(), "\n<br>";
+    echo $collection->count(), "\n<br/>";
 }
 
-
-
+getUsers($m);
 
 echo '<pre>';
 $m = new MongoClient();
 $db = $m->selectDB("teamboard-dev");
-$cl = new MongoCollection($db, "users");
+$cl = new MongoCollection($db, "boards");
 $cursor = $cl->find();
 foreach ($cursor as $doc) {
     print_r($doc);
@@ -45,5 +44,11 @@ catch ( MongoConnectionException $e )
 {
     echo '<p>Couldn\'t connect to mongodb, is the "mongo" process running?</p>';
     exit();
+}
+
+function getUsers($m){
+	$collection = $m->selectDB("teamboard-dev")->selectCollection("users");
+	echo "Users in database:";
+	echo $collection->count(), "\n<br/>";
 }
 ?>
