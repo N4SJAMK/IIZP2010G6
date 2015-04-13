@@ -1,7 +1,6 @@
 <?php
 include 'auth.php';
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+include 'head.php';
 if(isset($_POST['backup'])){
 	$dateParam = date("-Y-m-d-H-m-s");
 	exec("mongodump --db teamboard-dev --out /var/www/html/dumps/dump{$dateParam}");
@@ -10,36 +9,6 @@ if(isset($_POST['restore'])){
 	exec("mongorestore /var/www/html/dumps/{$_POST['restore']}");	
 }
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Contriboard</title>
-<link rel="stylesheet" type="text/css" href="tyylit.css">
-<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-<script type="text/javascript" src="jquery.js"></script>
-</head>
-
-<body>
-<header>
-<div id="haku">
-<input style="text" value="Search" name="haku">
-</div>
-</header>
-
-<div id="sivupalkki">
-<h2 id="otsikko">Contriboard</h2>
-
-<a href="index.php"><img src="view.png" alt="kuva" style="width:25px;height:25px">Boards</a><br>
-<a href="users.php"><img src="users.png" alt="kuva" style="width:25px;height:25px">Users</a><br>
-<a href="databases.php"><img src="db.png" alt="kuva" style="width:25px;height:25px">Database</a><br>
-<a href="login.php?signout=true"><img src="logout.png" alt="kuva" style="width:25px;height:25px" >Log out</a>
-<p><?php echo $users = 0; ?> users online</p>
-
-</div>
-
-<div id="sisalto">
 <h1>Admin Panel</h1>
 <script type="text/javascript">
 var temp = 0;
@@ -82,6 +51,6 @@ restoreNappi;
 //include("mongoDB.php");
 ?>
 </pre>
-</div>
-</body>
-</html>
+<?php
+include("foot.php");
+?>
