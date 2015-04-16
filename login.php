@@ -35,12 +35,13 @@ else if (isset($_POST['uid']) AND isset($_POST['passwd'])) {
 <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 <script type="text/javascript" src="jquery.js"></script>
 </head>
-<title>Please login</title>
+<div id="block1">
 
 <header>
 <h3>Login page</h3>
 </header>
 <div id="sisalto">
+<span>Please login</span>
 <?php
 if ($errmsg != '') echo $errmsg;
 ?>
@@ -50,4 +51,5 @@ Salasana:<br/><input type="password" name="passwd" size="30"><br/>
 <input type='submit' name='action' value='Kirjaudu'>
 <br/>
 </form>
+</div>
 </div>
