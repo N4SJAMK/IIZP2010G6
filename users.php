@@ -47,20 +47,18 @@ $emailList[] = NULL;
 $passList[] = NULL;
 $cursor = $users->find(array(),array("email"=>1, "password"=>1));
 $i = 0;
-
+echo '<table>';
 foreach($cursor as $doc){
 	$emailList[$i] = $doc['email'];
 	$passList[$i] = $doc['password'];
+	$userboards = $boards->find(array('createdBy' => $doc['_id']));
+	echo '</pre>';
 	echo <<<tuloste
-	 <ul style="list-style-type:square"><li>
-	 <h3>$emailList[$i]</h3>
-	 <ul style="list-style-type:square">
-	 <li>Password: $passList[$i]</li>
-	 <li><input type="submit" value="Delete user" onClick="deleteUser('$emailList[$i]')"></li>
-	 </ul></li></ul>
+	 <tr><td><h3 class="deleteheader">$emailList[$i]</h3></td><td>Boardeja: {$userboards->count()}</td><td><input type="submit" value="Delete user" onClick="deleteUser('$emailList[$i]')"></td></tr>
 tuloste;
 	$i ++;
 }
+echo '</table>';
 
 //include("mongoDB.php");
 }

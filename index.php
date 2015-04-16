@@ -9,14 +9,26 @@ error_reporting(E_ALL);
 	try{	
 	$m = new MongoClient();
 	$db = $m->selectDB("teamboard-dev");
-	$cl = new MongoCollection($db, "boards");
-	$cursor = $cl->find();
-	echo '<pre>';
-	foreach ($cursor as $doc) {
-		print_r($doc);
+	$boards = new MongoCollection($db, "boards");
+	$tickets = new MongoCollection($db, "tickets");
+	$users = new MongoCollection($db, "users");
+	$cursor = $boards->find();
+	foreach($cursor as $doc){
+		$luonut = $users->findone(array('_id' => $doc['createdBy']));
+		echo <<<rivi
+		Taulun nimi: [{$doc['name']}]
+		Luonut: [{$luonut['email']}]
+rivi;
+		$boardtickets = $tickets->find(array('board' => $doc['_id']));
+		echo '<ul>';
+		foreach($boardtickets as $ticket){
+			echo <<<rivi
+	<li style="color:{$ticket['color']};">{$ticket['content']}</li>
+rivi;
+		}
+		echo '</ul>';
+		echo '<br/>';
 	}
-	echo '</pre>';
-
 
 }
 catch ( MongoConnectionException $e )

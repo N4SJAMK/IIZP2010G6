@@ -40,7 +40,7 @@ else if (isset($_POST['uid']) AND isset($_POST['passwd'])) {
 <header>
 <h3>Login page</h3>
 </header>
-<div id="sisalto">
+<div id="sisalto" class="nonabs">
 <span>Please login</span>
 <?php
 if ($errmsg != '') echo $errmsg;

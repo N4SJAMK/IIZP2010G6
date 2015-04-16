@@ -48,21 +48,18 @@ function onkovarma(e){
 			data: { backup: "Backup", fromajax: "ok" }
 		}).done(function(data){
 			//trunc
-			alert(data);
 			if(data == 'ok' && $('#clean').prop('checked')){
 				$.ajax({
 					type: "POST",
 					url: "databases.php",
 					data: { trunc: "Trunc", fromajax: "ok" }
 				}).done(function(data2){
-					alert(data2);
 					if(data2 == "ok"){
 						$.ajax({
 							type: "POST",
 							url: "databases.php",
 							data: { restore: temp, fromajax: "ok" }
 						}).done(function(data3){
-							alert(data3);
 							if(data3 == "ok"){
 								location.reload();
 							}
