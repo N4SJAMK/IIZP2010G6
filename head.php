@@ -14,7 +14,7 @@
 <div id="sivupalkki">
 <h2 id="otsikko">Contriboard</h2>
 
-<a href="index.php"><img src="view.png" alt="kuva" style="width:25px;height:25px">Boards</a><br/>
+<a href="index.php"><img src="view.png" alt="kuva" style="width:25px;height:25px">Home</a><br/>
 <a href="users.php"><img src="users.png" alt="kuva" style="width:25px;height:25px">Users</a><br/>
 <a href="databases.php"><img src="db.png" alt="kuva" style="width:25px;height:25px">Database</a><br/>
 <a href="login.php?signout=true"><img src="logout.png" alt="kuva" style="width:25px;height:25px" >Log out</a>

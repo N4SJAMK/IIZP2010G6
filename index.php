@@ -2,7 +2,7 @@
 include 'auth.php';
 include 'head.php';
 ?>
-<h1>Boards</h1>
+<h1>Home</h1>
 <?php
 error_reporting(E_ALL);
 	ini_set('display_errors', 1);

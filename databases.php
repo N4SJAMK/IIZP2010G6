@@ -60,6 +60,7 @@ function onkovarma(e){
 							url: "databases.php",
 							data: { restore: temp, fromajax: "ok" }
 						}).done(function(data3){
+							alert(data);
 							if(data3 == "ok"){
 								location.reload();
 							}
